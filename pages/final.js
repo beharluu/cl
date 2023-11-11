@@ -2,7 +2,7 @@ import styles from '../styles/final.module.css';
 
 
 
-const final = (props) => {
+const Final = (props) => {
   
 
     return (
@@ -22,4 +22,4 @@ const final = (props) => {
     );
 };
 
-export default final;
+export default Final;

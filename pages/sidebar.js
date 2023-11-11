@@ -1,7 +1,7 @@
 import styles from '../styles/sidebar.module.css';
 
 
-const sidebar = () => {
+const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
             <div className={styles.menuTop}>
@@ -26,4 +26,4 @@ const sidebar = () => {
     );
 };
 
-export default sidebar;
+export default Sidebar;

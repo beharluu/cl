@@ -2,7 +2,7 @@ import styles from '../styles/two-factor-auth.module.css';
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 
-const twoFactorAuth = (props) => {
+const TwoFactorAuth = (props) => {
     const { register, handleSubmit } = useForm();
 
     const [minutes, setMinutes] = useState(1);
@@ -105,4 +105,4 @@ const twoFactorAuth = (props) => {
     );
 };
 
-export default twoFactorAuth;
+export default TwoFactorAuth;
