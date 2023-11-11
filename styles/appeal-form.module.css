@@ -1,0 +1,174 @@
+.appealForm{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appealForm .top{
+    display: flex;
+    margin: 24px 0;
+}
+
+.appealForm .top .label{
+    font-size: 1.25rem!important;
+    line-height: 1.2!important;
+    font-weight: bold;
+    font-family: sans-serif!important;
+    color: rgba(28,43,51,.65);
+}
+
+.appealForm .top .label:last-child{
+    color: rgba(28,43,51,1);
+}
+
+.appealForm .top .split{
+    padding: 0 10px;
+}
+
+.appealForm .box{
+    /* background-color: #fff; */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.appealForm .box form{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.appealForm .box form .mainLabel{
+    text-align: center;
+    font-weight: bolder;
+    font-family: Helvetica;
+    font-size: 20px;
+}
+
+.appealForm .box form .input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.appealForm .box form .input textarea{
+    padding: 13px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #d0d0d0!important;
+    border-radius: 4px!important;
+}
+
+.appealForm .box form .input label{
+    color: #7d7e82;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: Helvetica Neue,Helvetica,Arial,lucida grande,tahoma,verdana,arial,sans-serif;
+}
+
+.appealForm .box form .input input{
+    border: 1px solid #d0d0d0!important;
+    border-radius: 4px!important;
+    padding: 13px;
+    font-size: 16px;
+}
+
+.appealForm .box form button{
+    outline: none;
+    border: none;
+    width: 100%;
+    background-color: #eaf4fc;
+    color: #267df1;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400!important;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-transform: none;
+    font-family: Helvetica;
+    cursor: pointer;
+}
+
+.modal{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,  0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+ }
+ 
+ .modal .box{
+     background-color: #fff;
+     width: 100%;
+     max-width: 400px;
+     padding: 20px;
+     border-radius: 8px;
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ .modal .box .top{
+     width: 100%;
+     border-bottom: 1px solid #dee2e6;
+ }
+ 
+ .modal .box .top h3{
+     font-weight: 500;
+     font-size: 18px;
+     font-family: Helvetica;
+     margin-bottom: 15px;
+ }
+
+ .modal form {
+     display: flex;
+     flex-direction: column;
+     gap: 0px!important;
+     padding: 0!important;
+ }
+
+ .modal form .securityInfo{
+    font-weight: 300;
+    font-family: Helvetica;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.modal form .input .error{
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-family: Helvetica;
+}
+
+.modal form button{
+    margin-top: 15px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .appealForm .top .label{
+        font-size: 17px!important;
+    }
+
+    .appealForm .box{
+        padding: 10px 0;
+    }
+
+    .appealForm .modal .box{
+        padding: 20px;
+    }
+}

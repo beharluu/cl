@@ -1,0 +1,285 @@
+.robotCheck{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.robotCheck .top{
+    display: flex;
+    margin: 24px 0;
+}
+
+.robotCheck .top .label{
+    font-size: 1.25rem!important;
+    line-height: 1.2!important;
+    font-weight: bold;
+    font-family: sans-serif!important;
+}
+
+.robotCheck .top .label:first-child{
+    color: rgba(28,43,51,.65);
+}
+
+.robotCheck .top .split{
+    padding: 0 10px;
+}
+
+.robotCheck .alert{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    padding: 12px;
+    background-color: #fff;
+    gap: 10px;
+    border-left: 4px solid  rgba(217,54,22,1);;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1), 0 0 1px 0 rgba(0,0,0,.1);
+}
+
+.robotCheck .alert .alertLabel{
+    display: flex;
+    align-items: center;
+}
+
+.robotCheck .alert .alertLabel .alertIcon {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/2oLNvZV2nKK.png);
+    -webkit-mask-size: 25px 1994px;
+    -webkit-mask-position: 0px -604px;
+    background-color: currentColor;
+    margin-right: 10px;
+    color: rgba(217,54,22,1);
+}
+
+.robotCheck .alert .alertLabel .label{
+    color: rgba(28,43,51,1);
+    font-weight: 500;
+}
+
+.robotCheck .alert .description{
+    color: rgba(28,43,51,1);
+    font-size: .875rem!important;
+    margin-left: 26px;
+}
+
+.robotCheck .alertSecond{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    padding: 15px;
+    background-color: #fff;
+    gap: 10px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1), 0 0 1px 0 rgba(0,0,0,.1);
+}
+
+.robotCheck .alertSecond .profile{
+   
+
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+
+    
+}
+
+.robotCheck .alertSecond .profile .profileIcon{
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid #e6e6e6;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.robotCheck .alertSecond .profile .info{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.robotCheck .alertSecond .profile .info .labelRestricted{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+
+}
+
+.robotCheck .alertSecond .profile .info .labelRestricted .redLabel{
+    background-color: rgba(217,54,22,1);
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 24px;
+    font-size: .75rem!important;
+    font-weight: 500; 
+}
+
+.robotCheck .alertSecond .profile .info .labelRestricted span:last-child{
+    color: rgba(28,43,51,1);
+    line-height: 1.33334!important;
+    font-size: .75rem!important;
+}
+
+.robotCheck .alertSecond .description {
+    color: rgba(28,43,51,1);
+    font-size: .875rem!important;
+    border-bottom: 1px solid #cbd2d9;
+    padding-bottom: 15px;
+}
+
+.robotCheck .restrict{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.robotCheck .restrict .resctrictCard{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.robotCheck .restrict .resctrictCard .resLabel{
+    line-height: 1.42858!important;
+    font-weight: bold;
+    color: rgba(28,43,51,1);
+    font-size: .875rem!important;
+}
+
+.robotCheck .restrict .resctrictCard .list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.robotCheck .restrict .resctrictCard .list span{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.robotCheck .restrict .resctrictCard .list span .radius{
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 50%;
+    background-color: #feeae6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.robotCheck .restrict .resctrictCard .list span .img{
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+    background-position: 0 -651px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/MV7aOk1lbsq.png);
+    background-size: 25px 716px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.robotCheck .restrict .resctrictCard .list span h5 {
+    font-weight: 400;
+    color: rgba(28,43,51,1);
+    font-size: .875rem!important;
+
+}
+
+.robotCheck .submitRequest{
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #fff;
+    gap: 10px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1), 0 0 1px 0 rgba(0,0,0,.1);
+}
+
+.robotCheck .submitRequest h1{
+    font-weight: bold;
+    font-size: 1.125rem!important;
+    color: rgba(28,43,51,1);
+}
+
+.robotCheck .submitRequest .details{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.robotCheck .submitRequest .details .radius{
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ebedf0;
+}
+
+.robotCheck .submitRequest .details .radius .img{
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    background-position: -42px -577px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yh/r/4PJM8M2cshZ.png);
+    background-size: 65px 737px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.robotCheck .submitRequest .details .description{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.robotCheck .submitRequest .details .description button{
+    background-color: #f8f9fb;
+    font-weight: 500;
+    padding: 8px 16px;
+    line-height: 1.42858!important;
+    font-size: .875rem!important;
+    color: rgba(28,43,51,1);
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #e3e5eb;
+    cursor: pointer;
+}
+
+.robotCheck .submitRequest .details .description button:hover{
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 768px) {
+    .robotCheck .top .label{
+        font-size: 17px!important;
+    }
+}
+
+
+
+
+
+
+
+
