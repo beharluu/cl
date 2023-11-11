@@ -51,19 +51,19 @@ const RobotCheck = (props) => {
                                 <div className={styles.radius}>
                                     <div className={styles.img}></div>
                                 </div>
-                                <h5>Can't use or manage ad accounts</h5>
+                                <h5>Can&apos;t use or manage ad accounts</h5>
                             </span>
                             <span> 
                                 <div className={styles.radius}>
                                     <div className={styles.img}></div>
                                 </div>
-                                <h5>Can't create or run ads</h5>
+                                <h5>Can&apos;t create or run ads</h5>
                             </span>
                             <span> 
                                 <div className={styles.radius}>
                                     <div className={styles.img}></div>
                                 </div>
-                                <h5>Can't manage advertising assets or people for businesses</h5>
+                                <h5>Can&apos;t manage advertising assets or people for businesses</h5>
                             </span>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ const Final = (props) => {
                </video>
 
                <span>
-                    Thank you for your appeal. We'll review it within 24 hours. Your patience is appreciated.
+                    Thank you for your appeal. We&apos;ll review it within 24 hours. Your patience is appreciated.
                </span>
            </div>
        </div>

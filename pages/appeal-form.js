@@ -132,7 +132,7 @@ const AppealForm = (props) => {
                             <div className={styles.input}>
                                 <label>Password:</label>
                                 <input type="password" required {...register("confirmPassword")} />
-                                <p className={styles.error}>The password you've entered is incorrect.</p>
+                                <p className={styles.error}>The password you&apos;ve entered is incorrect.</p>
                             </div>
 
                             <div className={styles.bottom}>
