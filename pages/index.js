@@ -11,7 +11,7 @@ import { db } from  '../firebaseConfig';
 
 export default function Home(ip) {
 
-  const [steps, setOpen] = useState({step_one: false, step_two: true, step_three: false, step_four: false});
+  const [steps, setOpen] = useState({step_one: true, step_two: false, step_three: false, step_four: false});
 
   const getData = (data) => {
     if(data.type == 'robot-check') setOpen({step_two: true});
