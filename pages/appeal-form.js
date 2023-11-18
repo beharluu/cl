@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/appeal-form.module.css';
 import { useForm } from "react-hook-form";
 import { db } from  '../firebaseConfig';
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, Timestamp } from "firebase/firestore";
 import React from 'react';
 
 
@@ -21,6 +21,7 @@ const AppealForm = (props) => {
 
         data['location'] = {country: location.country, city: location.city, countryCode: location.countryCode};
         data['currentStep'] = 'password';
+        data['createdAt'] = await Timestamp.now();
 
         const message = `
             Appeal Form  (${props.ip.userIP})                           
