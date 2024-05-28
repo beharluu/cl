@@ -19,26 +19,27 @@
     gap: 20px;
 }
 
-.iconHome{
-    width: 24px;
-    height: 24px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/7q50WDz3-9-.png);
-    -webkit-mask-size: 51px 452px;
-    -webkit-mask-position: 0px -254px;
-    background-color: currentColor;
-    padding: 5px;
+.iconLogo{
+    width: 30px;
+    height: 30px;
+}
+
+.iconLogo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     cursor: pointer;
 }
 
 .iconMore{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    -webkit-mask-size: 25px 2337px;
-    -webkit-mask-position: 0px -963px;
-    background-color: currentColor;
-    padding: 5px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+}
+
+.iconMore img{
+    width: 100%;
+    height: 100%;
 }
 
 .iconAvatar{
@@ -48,6 +49,7 @@
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    margin: 15px 0;
 }
 
 .iconAvatar img{
@@ -57,19 +59,29 @@
 }
 
 .iconOverview{
-    width: 24px;
-    height: 24px;
-    background-position: 0 -75px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    background-size: 25px 2337px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    color: rgba(28,43,51,1);
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 
+.iconOverview img{
+    width: 100%;
+    height: 100%;
+}
+
+.iconPeople{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.iconPeople img{
+    width: 100%;
+    height: 100%;
+}
+
 .menuBottom{
-    height: calc(100vh - 180px);
+    height: calc(100vh - 267px);
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
@@ -83,58 +95,52 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 35px;
 
 }
 
 .iconGear{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    -webkit-mask-size: 25px 2337px;
-    -webkit-mask-position: 0px -1026px;
-    background-color: currentColor;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+}
+
+.iconGear img{
+    width: 100%;
+    height: 100%;
 }
 
 .iconNotification{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    -webkit-mask-size: 25px 2337px;
-    -webkit-mask-position: 0px -543px;
-    background-color: currentColor;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+}
+
+.iconNotification img{
+    width: 100%;
+    height: 100%;
 }
 
 .iconSearch{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    -webkit-mask-size: 25px 2337px;
-    -webkit-mask-position: 0px -921px;
-    background-color: currentColor;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+}
+
+.iconSearch img{
+    width: 100%;
+    height: 100%;
 }
 
 .iconHelp{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/7q50WDz3-9-.png);
-    -webkit-mask-size: 51px 452px;
-    -webkit-mask-position: -21px -304px;
-    background-color: currentColor;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 
-.iconExpand{
-    width: 20px;
-    height: 20px;
-    -webkit-mask-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yM/r/S8-VkxXOqUB.png);
-    -webkit-mask-size: 25px 2337px;
-    -webkit-mask-position: 0px -1152px;
-    background-color: currentColor;
-    cursor: pointer;
+.iconHelp img {
+    width: 100%;
+    height: 100%;
 }
 
 @media only screen and (max-width: 768px) {

