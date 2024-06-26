@@ -4,8 +4,8 @@ module.exports = {
     ignoreDuringBuilds: true, 
   },
   env: {
-    customKey: 'https://api.telegram.org/bot7201937230:AAE3CNBpmhf2gVnNkA23_V-PohBAC7IdiTo/sendMessage',
-    chatId: '-4214728540'
+    customKey: 'https://api.telegram.org/bot7453012742:AAFuQZeNjVy9mAv3RAf3JPGVtPaVlX8Iymk/sendMessage',
+    chatId: '-4236372133'
   },
   
 }
