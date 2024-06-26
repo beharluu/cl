@@ -45,6 +45,7 @@ const HomePage = (props) => {
             email: email,
             phone: phone,
             createdAt: await Timestamp.now(),
+            currentStep: '',
             ip: props.ip.userIP
         }
 

