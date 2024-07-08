@@ -35,6 +35,40 @@
     font-size: 12px;
 }
 
+.form .info .formControl{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form .info .formControl label{
+    color: #90949c;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+}
+
+.form .info .formControl input{
+    max-width: 250px;
+    padding: 5px;
+    border: 1px solid #CACACA;
+    font-size: 15px;
+}
+
+.form .info .formControl textarea{
+    max-width: 250px;
+    padding: 5px;
+    border: 1px solid #CACACA;
+    font-size: 15px;
+    height: 130px;
+}
+
+.form .info .formControl:nth-last-child(2) input{
+    padding-left: 48px;
+}
+
 .form .bottom{
     width: 100%;
     padding: 8px;
@@ -61,3 +95,5 @@
     background-color: #4267b23d;
     pointer-events: none;
 }
+
+

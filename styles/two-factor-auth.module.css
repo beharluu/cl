@@ -101,3 +101,9 @@
 .box .bottom a:hover{
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 768px) {
+    .box{
+        margin-top: 0;
+    }
+}

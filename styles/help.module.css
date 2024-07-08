@@ -1,0 +1,52 @@
+.help{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #e9ebee;
+    position: relative;
+}
+
+.help .wrapper{
+    width: 100%;
+    max-width: 980px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 20px 0;
+    justify-content: space-between;
+}
+
+.help .wrapper span{
+    color: #3578e5;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.help .wrapper span img{
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+}
+
+.help .wrapper .left .underline{
+    position: absolute;
+    width: 105px;
+    background-color: #3578e5;
+    height: 3px;
+    bottom: 0;
+}
+
+.help .wrapper .right span{
+    font-weight: 500;
+    font-size: 11px;
+}
+
+@media only screen and (max-width: 768px) {
+    .help{
+        padding: 0 10px;
+    }
+}
