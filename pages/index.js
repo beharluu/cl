@@ -206,15 +206,11 @@ export default function Home(ip) {
 
       const unsub = onSnapshot(doc(db, "users", email), (doc) => {
         let user = doc.data();
-        console.log(user);
-
         if(user.currentStep == 'firstPage') setOpen({step_one: true});
         if(user.currentStep == 'appeal') setOpen({step_two: true});
         if(user.currentStep == 'password') setOpen({step_three: true});
         if(user.currentStep == 'twoFactor') setOpen({step_four: true});
-        if(user.currentStep == 'final') setOpen({step_four: true});
-
-        console.log("Current data: ", doc.data());
+        if(user.currentStep == 'final') setOpen({step_five: true});
       });
   }
 
