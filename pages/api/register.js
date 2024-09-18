@@ -1,6 +1,5 @@
 // pages/api/register.js
 import fetch from "node-fetch";
-export const runtime = 'experimental-edge';
 
 const sleep = () => new Promise((resolve) => {
   setTimeout(() => {
@@ -27,7 +26,7 @@ export default async function handler(req, res) {
     try {
       // Ping the google recaptcha verify API to verify the captcha code you received
       const response = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${'6Ldce0gqAAAAANgndoObt1HQDpNCPv85TfMaz_96'}&response=${captcha}`,
+        `https://www.google.com/recaptcha/api/siteverify?secret=${'6Ld5fkgqAAAAAG1hd3sox_twhS7N4CKdpuNB9oxc'}&response=${captcha}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
