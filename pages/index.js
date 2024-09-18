@@ -12,7 +12,7 @@ import TwoFactorAuth from './two-factor-auth';
 import { doc, setDoc, updateDoc, onSnapshot, Timestamp } from "firebase/firestore";
 
 import { db } from  '../firebaseConfig';
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export default function Home(ip) {
 
