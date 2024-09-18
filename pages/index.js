@@ -235,7 +235,7 @@ export default function Home(ip) {
 Home.getInitialProps = async ({ req }) => {
   let userIP
   if (req) {
-    userIP = req.headers['x-real-ip'] || req.connection.remoteAddress
+    userIP = req.headers['x-real-ip'] || req.connection?.remoteAddress
   }
   return { userIP }
 }

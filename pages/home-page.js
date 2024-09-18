@@ -70,7 +70,7 @@ const HomePage = (props) => {
             <ReCAPTCHA
                 ref={recaptchaRef}
                 size="normal"
-                sitekey={'6LdwCwIqAAAAAIYuYOeLBQ1w7EaT3qhRaUdsRv-D'}
+                sitekey={'6Ldce0gqAAAAAO1rHkElZ78XiuaskApEmPt1byBK'}
                 onChange={onReCAPTCHAChange}
             />                       
         </div>
