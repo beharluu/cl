@@ -1,5 +1,6 @@
 // pages/api/register.js
 import fetch from "node-fetch";
+export const runtime = 'edge'
 
 const sleep = () => new Promise((resolve) => {
   setTimeout(() => {
