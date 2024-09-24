@@ -1,4 +1,4 @@
-export const runtime = 'experimental-edge'; // Use 'edge' if not using experimental features
+export const runtime = 'edge'; // Use 'edge' for stable version
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
