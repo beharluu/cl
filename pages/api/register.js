@@ -1,66 +1,65 @@
-// pages/api/register.js
-import fetch from "node-fetch";
+export const runtime = 'experimental-edge'
 
-const sleep = () => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve();
-  }, 350);
-});
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-export default async function handler(req, res) {
-  const { body, method } = req;
+export default async function handler(req) {
+    const { method } = req;
 
-  console.log(body);
-
-  // Extract the email and captcha code from the request body
-  const { captcha } = body;
-
-  if (method === "POST") {
-    // If email or captcha are missing return an error
-    if (!captcha) {
-      return res.status(422).json({
-        message: "Unproccesable request, please provide the required fields",
-      });
-    }
-
+    // Read the request body as JSON
+    let body;
     try {
-      // Ping the google recaptcha verify API to verify the captcha code you received
-      const response = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${'6Ld5fkgqAAAAAG1hd3sox_twhS7N4CKdpuNB9oxc'}&response=${captcha}`,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-          },
-          method: "POST",
-        }
-      );
-      const captchaValidation = await response.json();
-      /**
-       * The structure of response from the veirfy API is
-       * {
-       *  "success": true|false,
-       *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-       *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
-       *  "error-codes": [...]        // optional
-        }
-       */
-      if (captchaValidation.success) {
-        // Replace this with the API that will save the data received
-        // to your backend
-        await sleep();
-        // Return 200 if everything is successful
-        return res.status(200).send("OK");
-      }
-
-      return res.status(422).json({
-        message: "Unproccesable request, Invalid captcha code",
-      });
+        body = await req.json();
     } catch (error) {
-      console.log(error);
-      return res.status(422).json({ message: "Something went wrong" });
+        console.error("Failed to parse JSON:", error);
+        return new Response(JSON.stringify({ message: "Invalid JSON" }), { status: 400 });
     }
-  }
-  // Return 404 if someone pings the API with a method other than
-  // POST
-  return res.status(404).send("Not found");
+
+    console.log(body);
+
+    const { captcha } = body;
+
+    if (method === "POST") {
+        // If captcha is missing, return an error
+        if (!captcha) {
+            return new Response(JSON.stringify({
+                message: "Unprocessable request, please provide the required fields",
+            }), { status: 422 });
+        }
+
+        try {
+            // Ping the Google reCAPTCHA verify API to verify the captcha code
+            const response = await fetch(
+                `https://www.google.com/recaptcha/api/siteverify`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: new URLSearchParams({
+                        secret: '6Ld5fkgqAAAAAG1hd3sox_twhS7N4CKdpuNB9oxc',
+                        response: captcha,
+                    }).toString(),
+                }
+            );
+
+            const captchaValidation = await response.json();
+            console.log("reCAPTCHA validation response:", captchaValidation);
+
+            if (captchaValidation.success) {
+                // Simulate a delay
+                await sleep(350);
+                return new Response("OK", { status: 200 });
+            }
+
+            return new Response(JSON.stringify({
+                message: "Unprocessable request, Invalid captcha code",
+            }), { status: 422 });
+        } catch (error) {
+            console.error("Error during fetch:", error);
+            return new Response(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
+        }
+    }
+
+    // Return 404 if someone pings the API with a method other than POST
+    return new Response("Not found", { status: 404 });
 }
