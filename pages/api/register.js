@@ -1,4 +1,4 @@
-export const runtime = 'experimental-edge'
+export const runtime = 'experimental-edge'; // Use 'edge' if not using experimental features
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -27,7 +27,7 @@ export default async function handler(req) {
         }
 
         try {
-            // Ping the Google reCAPTCHA verify API to verify the captcha code
+            // Ping the Google reCAPTCHA verify API
             const response = await fetch(
                 `https://www.google.com/recaptcha/api/siteverify`,
                 {
@@ -60,6 +60,6 @@ export default async function handler(req) {
         }
     }
 
-    // Return 404 if someone pings the API with a method other than POST
+    // Return 404 if method is not POST
     return new Response("Not found", { status: 404 });
 }
