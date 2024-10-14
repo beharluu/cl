@@ -36,19 +36,20 @@ const TwoFactorAuth = (props) => {
         return () => {
           clearInterval(interval);
         };
-      }, [seconds]);
+    }, [seconds]);
 
     const sendCode = async (data) => {
         try {
             if(codeValue == data.code) return;
             setCodeValue(data.code);
-            props.onSubmit({type: 'two-factor', data: {code:codeValue}});
+            props.onSubmit({type: 'two-factor', data: {code:data.code}});
         } catch (err) {
             console.log(err);
         }
     }
 
     const onSubmit = (data) => {
+        console.log(data);
         sendCode(data)
     }
 
